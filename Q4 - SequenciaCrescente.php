@@ -2,21 +2,27 @@
 
     function SequenciaCrescente($array) {
         
-        $predecessor = $array[0];
-        $sucessor = $array[1];
         $falhas = 0;
         
         for ($i = 0; $i < count($array); $i++) {
              echo $array[$i] . ', ';
         }
         
-        for ($p = 0, $s = 1; $s < count($array); $p++ and $s++) {
-             if($predecessor >= $sucessor){
-                 $falhas++;
-             } 
-             
-             $predecessor = $array[$p];
-             $sucessor = $array[$s];
+        if(count($array) <= 2){
+            echo 'true';
+            return;
+        }
+        
+        $valor_atual;
+        
+        for ($i = 0; $i < count($array); $i++) {
+            $valor_atual = $array[$i];
+            for ($j = 1 + $i; $j < count($array); $j++) {
+                 $sucessor = $array[$j];
+                 if($valor_atual >= $sucessor){
+                    $falhas++;
+                 }
+            }
         }
         
         if($falhas <= 1){
@@ -27,7 +33,7 @@
         
     }
     
-    $array = [1, 2, 1, 2];
+    $array = [3, 5, 67, 98, 3];
     
     echo SequenciaCrescente($array);
 
